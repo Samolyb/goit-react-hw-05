@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import MovieList from '../components/MovieList';
 
-const MoviesPage = () => {
+export default function MoviesPage() {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
 
@@ -23,13 +23,11 @@ const MoviesPage = () => {
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search for movies"
+                    placeholder="Search movies"
                 />
                 <button type="submit">Search</button>
             </form>
             <MovieList movies={movies} />
         </div>
     );
-};
-
-export default MoviesPage;
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const MovieCast = () => {
+export default function MovieCast() {
     const { movieId } = useParams();
     const [cast, setCast] = useState([]);
 
@@ -28,6 +28,4 @@ const MovieCast = () => {
             </ul>
         </div>
     );
-};
-
-export default MovieCast;
+}

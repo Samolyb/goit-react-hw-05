@@ -3,9 +3,9 @@ import { useParams, Link, Route, useRouteMatch, useHistory, useLocation } from '
 import axios from 'axios';
 import MovieCast from '../components/MovieCast';
 import MovieReviews from '../components/MovieReviews';
-import { getImageUrl } from '../api/movie-api';
+import { getImageUrl } from '../movie-api';
 
-const MovieDetailsPage = () => {
+export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
     const { url, path } = useRouteMatch();
@@ -57,6 +57,5 @@ const MovieDetailsPage = () => {
             )}
         </div>
     );
-};
+}
 
-export default MovieDetailsPage;

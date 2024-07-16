@@ -1,14 +1,14 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
 import './App.module.css';
+import Navigation from '../Navigation/Navigation';
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
 const MoviesPage = lazy(() => import('../../pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../../pages/MovieDetailsPage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 
-function App() {
+export default function App() {
     return (
         <div className="App">
             <Navigation />
@@ -23,5 +23,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

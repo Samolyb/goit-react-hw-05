@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getImageUrl } from '../api/movie-api';
+import { getImageUrl } from '../../movie-api';
 
-const MovieList = ({ movies }) => {
+export default function MovieList({ movies }) {
     const location = useLocation();
     return (
         <ul>
@@ -21,6 +21,4 @@ const MovieList = ({ movies }) => {
             ))}
         </ul>
     );
-};
-
-export default MovieList;
+}
