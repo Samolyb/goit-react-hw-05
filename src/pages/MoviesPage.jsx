@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import MovieList from '../components/MovieList';
+import MovieList from '../components/MovieList/MovieList';
 
 export default function MoviesPage() {
     const [query, setQuery] = useState('');

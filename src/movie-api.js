@@ -9,53 +9,33 @@ const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 const IMAGE_SIZE = 'w500';
 
 export const getTrendingMovies = async () => {
-    const response = await axios.get('/trending/movie/day', {
-        headers: {
-            Authorization: `Bearer ${API_KEY}`,
-        },
-    });
+    const response = await axios.get('/trending/movie/day');
     return response.data.results;
 };
 
 export const searchMovies = async (query) => {
-    const response = await axios.get('/search/movie', {
-        params: {
-            query,
-        },
-        headers: {
-            Authorization: `Bearer ${API_KEY}`,
-        },
-    });
+    const response = await axios.get('/search/movie', { params: { query } });
     return response.data.results;
 };
 
 export const getMovieDetails = async (movieId) => {
-    const response = await axios.get(`/movie/${movieId}`, {
-        headers: {
-            Authorization: `Bearer ${API_KEY}`,
-        },
-    });
+    const response = await axios.get(`/movie/${movieId}`);
     return response.data;
 };
 
 export const getMovieCast = async (movieId) => {
-    const response = await axios.get(`/movie/${movieId}/credits`, {
-        headers: {
-            Authorization: `Bearer ${API_KEY}`,
-        },
-    });
+    const response = await axios.get(`/movie/${movieId}/credits`);
     return response.data.cast;
 };
 
 export const getMovieReviews = async (movieId) => {
-    const response = await axios.get(`/movie/${movieId}/reviews`, {
-        headers: {
-            Authorization: `Bearer ${API_KEY}`,
-        },
-    });
+    const response = await axios.get(`/movie/${movieId}/reviews`);
     return response.data.results;
 };
 
 export const getImageUrl = (filePath) => {
     return `${IMAGE_BASE_URL}/${IMAGE_SIZE}${filePath}`;
 };
+
+
+

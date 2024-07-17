@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, Route, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import { useParams, Link, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import MovieCast from '../components/MovieCast';
-import MovieReviews from '../components/MovieReviews';
+import MovieCast from '../components/MovieCast/MovieCast';
+import MovieReviews from '../components/MovieReviews/MovieReviews';
 import { getImageUrl } from '../movie-api';
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
-    const { url, path } = useRouteMatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
-            const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
-                headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZDNiZTg2NzM0ZTk1ZTFjYmY0Y2RhYzJkOTNkMmNkZCIsIm5iZiI6MTcyMDk3ODE0Mi4yNTU1NzgsInN1YiI6IjY2OTE4NGMwOWE4YWIwNGU4ODAyMzY5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.luhEo_MNzE0_LlAy5a8Gjx17pyX75XxrHyH7AQ0yDAs`
-                }
-            });
+            const response = await axios.get(`/movie/${movieId}`);
             setMovie(response.data);
         };
         fetchMovieDetails();
@@ -26,9 +21,9 @@ export default function MovieDetailsPage() {
 
     const goBack = () => {
         if (location.state && location.state.from) {
-            history.push(location.state.from);
+            navigate(location.state.from);
         } else {
-            history.push('/movies');
+            navigate('/movies');
         }
     };
 
@@ -45,17 +40,18 @@ export default function MovieDetailsPage() {
                     <p>{movie.overview}</p>
                     <ul>
                         <li>
-                            <Link to={`${url}/cast`}>Cast</Link>
+                            <Link to="cast">Cast</Link>
                         </li>
                         <li>
-                            <Link to={`${url}/reviews`}>Reviews</Link>
+                            <Link to="reviews">Reviews</Link>
                         </li>
                     </ul>
-                    <Route path={`${path}/cast`} component={MovieCast} />
-                    <Route path={`${path}/reviews`} component={MovieReviews} />
+                    <Routes>
+                        <Route path="cast" element={<MovieCast />} />
+                        <Route path="reviews" element={<MovieReviews />} />
+                    </Routes>
                 </>
             )}
         </div>
     );
 }
-
